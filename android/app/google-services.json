@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "711923275766",
+    "firebase_url": "https://learnbase-abf9c.firebaseio.com",
+    "project_id": "learnbase-abf9c",
+    "storage_bucket": "learnbase-abf9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711923275766:android:888fd65547d4a5406459d7",
+        "android_client_info": {
+          "package_name": "com.example.mygame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711923275766-g6f3fdp5029u89qppst1o94mncmd9ft6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJpXzxUtbEJLM9j5uTXDqAYwMsjhySJjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711923275766-g6f3fdp5029u89qppst1o94mncmd9ft6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "711923275766-3r7bn9qq6j61khrdr34gc6m1to9penqi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mygame12",
+                "app_store_id": "962194608"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
