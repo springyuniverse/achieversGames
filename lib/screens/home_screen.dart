@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mygame/screens/testItemBar.dart';
 import 'package:mygame/shared/bottom_nav.dart';
 import 'package:mygame/shared/roundned_button.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -74,77 +75,8 @@ class HomeScreen extends StatelessWidget {
                                 .height * 0.05,
                           ),
 
-                          //topBar
-                          Stack(
-                            children: <Widget>[
-                              Container(
-                                height: 140,
-                              ),
-
-                              Positioned(
-                                top: 32,
-                                width: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width,
-                                height: 80,
-                                child: Container(
-                                  // A fixed-height child.
-                                  color: const Color(0xff162841), // Yellow
-                                ),
-                              ),
-
-                              topBarItem(
-                                bottomRight: 40,
-                                topRight: 40,
-                                ptop: 32,
-                              ),
-
-                              //image of gems
-
-                              topBarItem(
-                                leftValue:
-                                MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width * 0.82,
-                                bottomLeft: 40,
-                                topLeft: 40,
-                                ptop: 32,
-                              ),
-
-                              Gold(
-                                ptop: 49,
-                                pleft: 10,
-                                image: 'assets/gems.png',
-                                text: profile.gems.toString(),
-                              ),
-                              Gold(
-                                ptop: 49,
-                                pleft: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .width * 0.9,
-                                image: 'assets/gold.png',
-                                text: profile.gold.toString(),
-                              ),
-
-                              Positioned(
-                                bottom: 5,
-                                top: 5,
-                                right: 5,
-                                left: 5,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: CircleAvatar(
-                                    radius: 50,
-                                    backgroundColor: Colors.white,
-                                    backgroundImage: NetworkImage(profile.img)
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          ItemBar(),
+                          SizedBox(height: 10,),
                           Text(
                             profile.name ?? 'Guest',
                             style: TextStyle(color: Colors.white),
@@ -257,12 +189,12 @@ class Gold extends StatelessWidget {
 class topBarItem extends StatelessWidget {
   const topBarItem(
       {Key key,
-      this.leftValue = 0,
-      this.bottomLeft = 0,
-      this.topLeft = 0,
-      this.topRight = 0,
-      this.bottomRight = 0,
-      this.ptop,
+        this.leftValue = 0,
+        this.bottomLeft = 0,
+        this.topLeft = 0,
+        this.topRight = 0,
+        this.bottomRight = 0,
+        this.ptop,
         this.color = const Color(0xff0D1829),
         this.containerH = 80,
         this.containerW = 70

@@ -9,35 +9,35 @@ import 'package:flutter/material.dart';
 class AuthService{
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final Firestore _db  = Firestore.instance;
+  final FirebaseFirestore _db  = FirebaseFirestore.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 
-  Future<FirebaseUser> get getUser => _auth.currentUser();
-  Stream<FirebaseUser> get user => _auth.onAuthStateChanged;
+  User get getUser => _auth.currentUser;
+  Stream<User> get user => _auth.userChanges();
 
 
 
-  Future<FirebaseUser> anonLogin()async{
-    AuthResult authResult =  await _auth.signInAnonymously();
+  Future<User> anonLogin()async{
+    var authResult =  await _auth.signInAnonymously();
     updateUserData(authResult.user);
     return authResult.user;
   }
 
 
 
-  Future<FirebaseUser> googleSignIn() async {
+  Future<User> googleSignIn() async {
     try {
       GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
       GoogleSignInAuthentication googleAuth =
       await googleSignInAccount.authentication;
 
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
+      final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      AuthResult authResult = await _auth.signInWithCredential(credential);
+      var authResult = await _auth.signInWithCredential(credential);
       if(authResult.additionalUserInfo.isNewUser) {
         updateUserData(authResult.user);
       }
@@ -49,20 +49,20 @@ class AuthService{
   }
 
 
-  Future<void> updateUserData(FirebaseUser user){
+  Future<void> updateUserData(User user){
 
-    DocumentReference userRef = _db.collection('users').document(user.uid);
-    DocumentReference reportRef = _db.collection('reports').document(user.uid);
+    DocumentReference userRef = _db.collection('users').doc(user.uid);
+    DocumentReference reportRef = _db.collection('reports').doc(user.uid);
 
-    reportRef.setData({
+    reportRef.update({
 
       'uid': user.uid,
       'lastActivity': DateTime.now(),
       'total': 0,
 
-    }, merge:true);
+    }, );
 
-    return userRef.setData({
+    return userRef.update({
 
       'uid': user.uid,
       'lastActivity': DateTime.now(),
@@ -72,7 +72,7 @@ class AuthService{
       'gold': 100,
       'gems':4,
 
-    }, merge:true);
+    }, );
 
   }
 

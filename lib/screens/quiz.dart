@@ -128,7 +128,7 @@ class CongratsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<FirebaseUser>(context);
+    var user = Provider.of<User>(context);
 
     return Padding(
       padding: EdgeInsets.all(8),
@@ -179,7 +179,7 @@ class CongratsPage extends StatelessWidget {
   }
 
   /// Database write to update report doc when complete
-  Future<void> _updateUserReport(Quiz quiz, FirebaseUser user) {
+  Future<void> _updateUserReport(Quiz quiz, User user) {
 
     return Global.reportRef.upsert(
       ({

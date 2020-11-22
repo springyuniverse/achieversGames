@@ -12,7 +12,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var user = Provider.of<FirebaseUser>(context);
+    var user = Provider.of<User>(context);
 
     return FutureBuilder(
         future: Global.usersRef.getDocument(),

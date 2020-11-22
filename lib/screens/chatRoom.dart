@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-final _store = Firestore.instance;
+final _store = FirebaseFirestore.instance;
 ScrollController _scrollController = new ScrollController();
 
 
@@ -16,7 +16,7 @@ class ChatRoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var user = Provider.of<FirebaseUser>(context);
+    var user = Provider.of<User>(context);
     String sentMessage;
     final textController = new TextEditingController();
 
@@ -65,7 +65,7 @@ class ChatRoom extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                       );
 
-                       await _store.collection('chats').document(chatRoom).collection('messages').add({
+                       await _store.collection('chats').doc(chatRoom).collection('messages').add({
 
                         'text': sentMessage,
                         'sender': user.displayName,
@@ -100,11 +100,11 @@ class MymessagesStream extends StatelessWidget {
   final String chatRoom;
 @override
 Widget build(BuildContext context) {
-  var user = Provider.of<FirebaseUser>(context);
+  var user = Provider.of<User>(context);
 
   return StreamBuilder<QuerySnapshot>(
 //    stream: _store.collection('messages').orderBy('createdAt',descending: true).snapshots(),
-    stream: _store.collection('chats').document(chatRoom).collection('messages').orderBy('createdAt',descending: true).snapshots(),
+    stream: _store.collection('chats').doc(chatRoom).collection('messages').orderBy('createdAt',descending: true).snapshots(),
     // ignore: missing_return
     builder:(context,snapshot){
       // ignore: missing_return
@@ -122,11 +122,11 @@ Widget build(BuildContext context) {
         );
 
       }
-      final messages = snapshot.data.documents;
+      var messages = snapshot.data.docs;
       List<MessageBubble> messageBubbles = [];
       for (var message in messages) {
-        final messageText = message.data['text'];
-        final messageSender = message.data['sender'];
+        final messageText = message.data()['text'];
+        final messageSender = message.data()['sender'];
         final currentUser = user.displayName;
 
         final messageBubble = MessageBubble(messageSender: messageSender, messageText: messageText,

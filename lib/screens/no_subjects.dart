@@ -20,7 +20,7 @@ class NoSubjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var profile = Provider.of<MyUserProfile>(context);
-    var user = Provider.of<FirebaseUser>(context);
+    var user = Provider.of<User>(context);
     if(profile != null){
     List<MySubject> subjects = profile.subjects;}
     return  Scaffold(

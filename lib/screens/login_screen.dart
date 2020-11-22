@@ -22,16 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-    auth.getUser.then(
-          (user) {
-        if (user != null) {
-          Navigator.pushReplacementNamed(context, '/homeScreen');
-        }
-      },
-    );
-
-
-
   }
   @override
   Widget build(BuildContext context) {
