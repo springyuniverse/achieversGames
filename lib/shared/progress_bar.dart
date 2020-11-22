@@ -100,7 +100,7 @@ class QuizBadge extends StatelessWidget {
   }
 }
 
-final _store = Firestore.instance;
+final _store = FirebaseFirestore.instance;
 
 class TopicProgress extends StatelessWidget {
   final MyTopics topic;
@@ -125,7 +125,7 @@ class TopicProgress extends StatelessWidget {
 
         if(snapshot.hasData) {
 
-           this.quizzesLength = snapshot.data.documents.length;
+           this.quizzesLength = snapshot.data.docs.length;
            if (completedQuizzes == null){
              completedQuizzes = 0;
            }

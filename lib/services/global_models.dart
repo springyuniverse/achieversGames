@@ -1,5 +1,4 @@
 import 'services.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 class Global {
@@ -28,7 +27,6 @@ class Global {
   static final String title = 'Fireship';
 
   // Services
-  static final FirebaseAnalytics analytics = FirebaseAnalytics();
   static final GlobalKey _scaffoldKey = GlobalKey();
 
   static  GlobalKey get scaffoldKey => _scaffoldKey;

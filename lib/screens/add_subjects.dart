@@ -26,7 +26,7 @@ class AddSubject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var user = Provider.of<FirebaseUser>(context);
+    var user = Provider.of<User>(context);
     var profile = Provider.of<MyUserProfile>(context);
 
 
