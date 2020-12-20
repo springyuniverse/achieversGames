@@ -166,7 +166,7 @@ class MyUserProfile {
   final  String email;
   final String img;
   final int gold;
-   int gems;
+  int gems;
   final List<Awards> awards;
   final List<MySubject> subjects;
 

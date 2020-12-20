@@ -18,9 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   AuthService auth = AuthService();
   @override
   void initState() {
+
     super.initState();
-
-
 
   }
   @override

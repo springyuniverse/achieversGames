@@ -26,7 +26,8 @@ class Document<T>{
 
   Stream<T> streamData(){
 
-    return ref.snapshots().map((snap) => Global.models[T](snap.data) as T);
+
+    return ref.snapshots().map((snap) => Global.models[T](snap.data()) as T);
 
   }
 
@@ -82,22 +83,23 @@ class   UserData<T> {
 
 
   Stream<T> get documentStream {
-
     return Observable(_auth.userChanges()).switchMap((user) {
       if (user != null) {
         Document<T> doc = Document<T>(path: '$collection/${user.uid}');
+
+
         return doc.streamData();
       } else {
         return Observable<T>.just(null);
       }
-    }); //.shareReplay(maxSize: 1).doOnData((d) => print('777 $d'));// as Stream<T>;
+    });
   }
 
   Future<T> getDocument() async {
     User user =  _auth.currentUser;
 
     if (user != null) {
-      Document doc = Document<T>(path: '$collection/${user.uid}');
+      Document doc = Document<T>(path:'$collection/${user.uid}');
       return doc.getData();
     } else {
       return null;

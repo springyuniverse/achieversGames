@@ -11,25 +11,37 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/no_subjects.dart';
 import 'services/auth.dart';
 import 'services/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+
+void main() async {
 
 
 
-void main() => runApp(MyApp());
 
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print("hello");
     return MultiProvider(
       providers: [
 
--
 
 
-        StreamProvider<MyUserProfile>.value(value: Global.usersRef.documentStream,),
+
+        StreamProvider<MyUserProfile>.value(value: Global.usersRef.documentStream,
+        ),
 
         StreamProvider<User>.value(value: AuthService().user),
-        StreamProvider<Report>.value(value: Global.reportRef.documentStream),
+        StreamProvider<Report>.value(value: Global.reportRef.documentStream,
+
+        ),
 
 
 
