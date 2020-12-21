@@ -29,11 +29,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-
     return FutureBuilder(
         future: Global.subjectRef.getData(),
         builder: (BuildContext context, AsyncSnapshot snap) {
 
+          if(snap.hasError){
+            print("at home ${snap.data}");
+            print(snap.error);
+          }
           if(!snap.hasData){
 
             return LoadingScreen();

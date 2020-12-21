@@ -21,10 +21,15 @@ class Document<T>{
   }
 
   Future<T> getData(){
-    return ref.get().then((snap) => Global.models[T](snap.data) as T);
+
+    print("at get data");
+
+    print(ref.get().then((snap) => print(snap.data())));
+    return ref.get().then((snap) => Global.models[T](snap.data()) as T);
   }
 
   Stream<T> streamData(){
+
 
 
     return ref.snapshots().map((snap) => Global.models[T](snap.data()) as T);
@@ -48,14 +53,14 @@ class Collection<T> {
 
   Future<List<T>> getData() async {
     var snapshots = await ref.get();
-    return snapshots.docs.map((doc) => Global.models[T](doc.data) as T ).toList();
+    return snapshots.docs.map((doc) => Global.models[T](doc.data()) as T ).toList();
   }
 
   Future<List<T>> getMyData(String field,String value) async {
 
     var snapshots = await ref.where(field,isEqualTo: value).get();
 
-    return snapshots.docs.map((doc) => Global.models[T](doc.data) as T ).toList();
+    return snapshots.docs.map((doc) => Global.models[T](doc.data()) as T ).toList();
   }
 
 
