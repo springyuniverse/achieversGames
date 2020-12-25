@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
-
-// Shared Data
 class QuizState with ChangeNotifier {
   double _progress = 0;
   Option _selected;
